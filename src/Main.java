@@ -13,5 +13,6 @@ public class Main {
 
         // Solve the puzzle
         sudoku.solve();
+        sudoku.printBoard();
     }
 }
