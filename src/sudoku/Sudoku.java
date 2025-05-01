@@ -5,9 +5,12 @@ public class Sudoku {
     private int[][] board =  new int[SIZE][SIZE];
 
     public void loadBoard(String filepath){}
-    public boolean solveSudoku(int row, int col){}
+    public boolean solveSudoku(int row, int col){
+        return false;}
     public void solve(){}
-    public boolean isSafe(int row, int col, int numb){}//selected num in cell
+    public boolean isSafe(int row, int col, int numb){
+        return true;
+    }//selected num in cell
     public void printBoard(){}
 
     public int[][] getBoard(){return this.board;}

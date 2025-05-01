@@ -7,7 +7,7 @@ public class Main {
         Sudoku sudoku = new Sudoku();
 
         // Load the Sudoku puzzle from the specified file
-        sudoku.loadBoard(".../Group4_Assignment5/src/sudoku.txt");
+        sudoku.loadBoard("src/sudoku/sudoku.txt");
         System.out.println("Loaded Sudoku Puzzle:");
         sudoku.printBoard();
 
