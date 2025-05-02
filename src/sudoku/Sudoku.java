@@ -9,7 +9,7 @@ public class Sudoku {
     private int[][] board =  new int[SIZE][SIZE];
 
     public void loadBoard(String filepath){
-        try(Scanner scan = new Scanner(new File(filepath))){
+        try (Scanner scan = new Scanner(new File(filepath))){
             for (int i=0; i<SIZE; i++){
                 for (int j=0; j<SIZE; j++){
                     if(scan.hasNextInt()) {
@@ -20,18 +20,23 @@ public class Sudoku {
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);//if file isn't found
         }
     }
     public boolean solveSudoku(int row, int col){
-        if(row == SIZE-1 && col == SIZE)//end of the board has been reached
-        {
+        if(row == SIZE-1 && col == SIZE){//end of the board has been reached
             return true;
         }
+
+        if(col == SIZE){
+            row++;
+            col=0;
+        }
+
         if(board[row][col] != 0){//keeps moving if a cell is full
             return solveSudoku(row, col+1);
         }
-        for(int i=0; i<SIZE; i++){
+        for(int i=0; i<=SIZE; i++){
             if(isSafe(row, col, i)){
                 board[row][col] = i;
                 if(solveSudoku(row, col+1)){
@@ -40,7 +45,8 @@ public class Sudoku {
                 board[row][col] = 0;//backtracking!
             }
         }
-        return false;}
+        return false;
+    }
 
     public void solve(){
         System.out.println("\nSolving sudoku...");
@@ -52,9 +58,10 @@ public class Sudoku {
             System.out.println("\nPuzzle could not be solved.\nNo answer exists.");
         }
     }
+
     public boolean isSafe(int row, int col, int numb){
         for(int i=0; i<SIZE; i++){
-            if(board[row][i] == numb || board[i][col] == numb){
+            if(board[i][col] == numb || board[row][i] == numb){
                 return false;
             }
         }
@@ -70,6 +77,7 @@ public class Sudoku {
         }
         return true;
     }//selected num in cell
+
     public void printBoard(){
         for (int i=0; i<SIZE; i++){
             for (int j=0; j<SIZE; j++){
@@ -79,6 +87,6 @@ public class Sudoku {
         }
     }
 
-    public int[][] getBoard(){return this.board;}
+    public int[][] getBoard(int[][] board){return this.board;}
     public void setBoard(int[][] board){this.board = board;}
 }
